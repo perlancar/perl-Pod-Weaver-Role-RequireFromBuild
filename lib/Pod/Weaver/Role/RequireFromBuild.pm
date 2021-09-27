@@ -27,7 +27,7 @@ sub require_from_build {
 
     my $file = $files[0];
     my $filename = $file->name;
-    eval "# line 1 \"$filename (from dist build)\"\n" . $file->encoded_content;
+    eval "# line 1 \"$filename (from dist build)\"\n" . $file->encoded_content; ## no critic: BuiltinFunctions::ProhibitStringyEval
     die if $@;
     $INC{$name} = "(set by ".__PACKAGE__.", from build files)";
 }
@@ -52,4 +52,4 @@ no Moose::Role;
 
 =head1 SEE ALSO
 
-L<Dist::Zilla::Plugin::TableData>
+L<Dist::Zilla::Role::RequireFromBuild>
